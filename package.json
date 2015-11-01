@@ -1,0 +1,13 @@
+{
+  "name": "FullMean_Friends",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "~4.2.0",
+    "html": "0.0.10",
+    "mongoose": "latest"
+  }
+}

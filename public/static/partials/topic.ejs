@@ -1,0 +1,49 @@
+ <a href="#/dashboard">Dashboard</a> 
+ <a href="#">Logoff</a> 
+    <h1> Welcome  , {{ users2.name }}</h1> 
+    <br> 
+<table border="1" style="width:50%">
+           Search : <input type="text" ng-model="filter_name" >
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Topic</th>
+      <th>User Name</th>
+      <th>Posts</th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <tr ng-repeat="topic in topics | filter: filter_name">
+
+          <td>{{topic.category}}</td>
+         <td><a href="#topic/{{ topic._id }}">{{ topic.topic }}</a></td>
+          <td><a href="#profile/{{ topic._userId }}">{{topic.name}}</a></td>
+      <td>{{ topic.post.length}}</td> 
+      </tr>
+    </tbody>   
+    
+</table>
+      <h1> Add a new Topic </h1>    
+      <form>
+      Topic: <textarea name='topic' ng-model='new_topic.topic' > </textarea> 
+      <br> 
+      <br>
+      Description: <textarea name='description' ng-model='new_topic.description' > </textarea> 
+      <br>
+      <br>
+      Category: <select name='category' ng-model='new_topic.category' 
+      >
+      <option value="Ruby on Rails">Ruby on Rails</option>
+      <option value="MySQL">MySQL</option>
+      <option value="UX">UX</option>
+      <option value="Web Development">Web Development</option>
+      <option value="Javascript">Javascript</option>
+    </select>    
+    <br>
+    <br>
+    <input type="submit" value="Enter"  ng-click="addTopic()"> 
+    </form> 
+
+
+

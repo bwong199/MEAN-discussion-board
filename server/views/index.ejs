@@ -1,0 +1,24 @@
+<html ng-app="discussions_app">
+<head>
+    <title>Discussion Board</title>
+     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="javascripts/app.js"></script>
+    <script type="text/javascript" src="javascripts/factories/userFactory.js"></script>
+    <script type="text/javascript" src="javascripts/factories/topicFactory.js"></script>
+    <script type="text/javascript" src="javascripts/controllers/usersController.js"></script>
+    <script type="text/javascript" src="javascripts/controllers/dashboardsController.js"></script>
+</head>
+<body>
+     <div>
+        <a href="#/">Dashboard</a> | <a href="#/partial2">Products</a> | <a href="#/partial3">Orders</a> | <a href="#/partial4">Customers</a> 
+        <div ng-view=""></div>
+    </div>
+    <h1> Hello</h1> 
+    <h3> Please enter your name to share you idea </h3> 
+    <form action = "/main" method='post'> 
+          <input type="text" ng-model="new_user.name" placeholder="name">
+    <input type="submit" value="Enter" ng-click="addUser()" > 
+    </form>  
+</body>
+</html>

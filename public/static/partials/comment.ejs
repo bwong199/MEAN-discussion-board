@@ -1,0 +1,65 @@
+<a href="#">Logoff</a> 
+
+<ul ng-repeat="post in posts">
+  {{post}}
+
+</ul>
+
+  <form>
+<br>
+
+<br>
+
+Post your answer here.....
+<br>
+
+    <textarea  ng-model='new_post.post' name="post" rows="4" cols="50">
+    <input type="hidden" ng-model='new_post.post'> 
+</textarea> 
+
+<br>
+<br>
+<input type="submit" value="Post Message!" ng-click="addPost()">
+</form> 
+comment comment
+
+    
+<ul ng-repeat="post in posts">
+
+  <ul ng-repeat="x in posts.post">
+      {{x.post}}, {{x._id}}
+
+
+      <br>
+      <form action="/comment/{{x._id}}">
+          <textarea  ng-model='new_comment.comment' name="post" rows="4" cols="50">
+    <input type="hidden" ng-model='new_comment.name'> 
+</textarea> 
+
+<br>
+<br>
+
+
+
+<input type="submit" value="Comment">
+</form>
+
+
+<form action="/like/{{x._id}}" method="post"  type="submit" value="LIKE" >
+<input type="submit" value="LIKE">
+</form>
+
+<form type="submit" value="DISLIKE" >
+<input type="submit" value="DISLIKE">
+</form> 
+
+    </ul>
+
+</ul>
+    
+
+
+</table> 
+
+
+
