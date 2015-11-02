@@ -8,23 +8,39 @@ discussions_app.factory("postFactory", function( $http, $routeParams) {
         });
     };
 
+
     factory.getComment = function(callback) {
         $http.get("/comment/" + $routeParams.id).success(function(output) {
             callback(output);
         });
     };
 
-    factory.addPost = function(info, callback) {
-        $http.post("/savePost/" + $routeParams.id, info).success(function() {
-            posts.push({name: info.name, age: info.description, category: info.category});
-            callback(posts);
+    factory.getLike = function(callback) {
+        $http.get("/like/" + $routeParams.id).success(function(output) {
+            callback(output);
         });
     };
 
-    factory.addComment = function(info, callback) {
-        $http.post("/saveComment" , info).success(function() {
-            comments.push({name: info.name, age: info.description, category: info.category});
-            callback(posts);
+    factory.addPost = function(info, callback) {
+        $http.post("/savePost/" + $routeParams.id, info).success(function() {
+        });
+    };
+
+    factory.addComment = function(id, info, callback) {
+
+        $http.post("/saveComment/" + id , info).success(function() {
+        });
+    };
+
+    factory.addUp = function(id, info, callback) {
+
+        $http.post("/saveUp/" + id, info).success(function() {
+        });
+    };
+
+    factory.addDown = function(id, info, callback) {
+        console.log(info);
+        $http.post("/saveDown/" + id, info).success(function() {
         });
     };
     return factory;

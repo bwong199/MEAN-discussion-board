@@ -45,16 +45,40 @@ discussions_app.controller("PostsController", function($scope, topicFactory, pos
         });
     };
 
-    $scope.addComment = function() {
-        postFactory.addComment($scope.new_comment, function () {
+    $scope.addComment = function(id, comment) {
 
-            console.log($scope.new_comment);
+
+        postFactory.addComment(id, comment, function () {
 
             postFactory.getComment(function (data) {
-
                 $scope.comments = data;
             });
+
             $scope.new_comment = {};
+        });
+    };
+
+    $scope.addUp = function(id, up) {
+
+        postFactory.addUp(id, up, function () {
+
+            postFactory.getLike(function (data) {
+                $scope.ups = data;
+            });
+
+            $scope.new_up = {};
+        });
+    };
+
+    $scope.addDown = function(id, like) {
+
+        postFactory.addDown(id, like, function () {
+
+            postFactory.getUp(function (data) {
+                $scope.downs = data;
+            });
+
+            $scope.new_down = {};
         });
     };
 });

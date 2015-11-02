@@ -49,17 +49,33 @@ module.exports = function(app) {
     });
 
     app.post("/savePost/:id", function(req, res) {
-
+ 
         posts.savePost(req, res);
     });
 
-    app.post("/saveComment", function(req, res) {
-        comments.saveComment(req, res);
+    app.post("/saveComment/:id", function(req, res) {
+        console.log(req.body);        
+        // posts.saveComment(req, res);
+    });
+
+    app.post("/saveUp/:id", function(req, res) {   
+
+        posts.saveUp(req, res);
+    });
+
+    app.post("/saveDown/:id", function(req, res) {   
+
+        posts.saveDown(req, res);
     });
 
     app.get("/comment/:id", function(req, res) {
         
-        comments.show(req, res);
+        posts.showComment(req, res);
+    });
+
+    app.get("/like/:id", function(req, res) {
+        
+        posts.showLike(req, res);
     });
 
     app.post("/up/:id", function(req, res) {

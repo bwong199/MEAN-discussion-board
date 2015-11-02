@@ -4,6 +4,7 @@ var Post = mongoose.model('Post');
 var Topic = mongoose.model('Topic');
 var Comment = mongoose.model('Comment');
 var User = mongoose.model('User');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports = (function() {
     return {
@@ -11,6 +12,22 @@ module.exports = (function() {
             Topic.findOne({_id: req.params.id})
                 .populate('post')
                 .populate('comment')
+                .exec(function(err, result) {
+                res.json(result)
+            });
+        },
+
+        showComment: function(req, res) {
+            Topic.findOne({_id: req.params.id})
+                .populate('post')
+                .exec(function(err, result) {
+                res.json(result)
+            });
+        },
+
+        showLike: function(req, res) {
+            Topic.findOne({_id: req.params.id})
+                .populate('post')
                 .exec(function(err, result) {
                 res.json(result)
             });
@@ -51,21 +68,56 @@ module.exports = (function() {
         },
 
         saveComment: function(req, res) {
-            Post.findOne({_id: req.body._userId}, function(err, post){
-                var comment = new Comment(req.body);
-                comment._postId = post._id;
+
+            Post.findById(req.params.id, function(err, post){
+                var comment = req.body; 
+
                 post.comment.push(comment);
-                comment.save(function(err){
-                    post.save(function(err){
-                        if(err) {
-                            console.log('Error');
-                        } else {
-                            console.log('Successfully added comment', comment);
-                            res.redirect('/');
-                        }
-                    })
+                post.save(function(err){
+                    if(err) {
+                        console.log('Error');
+                    } else {
+                        console.log('Successfully added comment', comment);
+                        res.redirect('/');
+                    }
                 })                
             });
-        } 
+        },
+
+        saveUp: function(req, res) {
+
+            Post.findById(req.params.id, function(err, post){
+                var up = req.body; 
+
+                post.up.push(up);
+                post.save(function(err){
+                    if(err) {
+                        console.log('Error');
+                    } else {
+                        console.log('Successfully added upvote', up);
+                        res.redirect('/');
+                    }
+                })                
+            });
+        }, 
+
+        saveDown: function(req, res) {
+
+            Post.findById(req.params.id, function(err, post){
+                var down = req.body; 
+
+                post.down.push(down);
+                post.save(function(err){
+                    if(err) {
+                        console.log('Error');
+                    } else {
+                        console.log('Successfully added downvote', down);
+                        res.redirect('/');
+                    }
+                })                
+            });
+        }, 
+
+
     }
 })();
