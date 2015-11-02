@@ -3,31 +3,34 @@
 
 <a href="#">Logoff</a> 
 
+ Hello {{ users2.name }}
+
 <br> 
- <h1> Hello {{ users2.name}} !</h1> 
 
 <h2> {{posts.name }} posted a topic</h2> 
 
-<h3> {{posts.topic}} </h3> 
+<h3> Topic: {{posts.topic}} </h3> 
 
-<h3> {{posts.description}} </h3> 
-   {{comments}}
+<h3> Description: {{posts.description}} </h3> 
+
 <form>
 <br>
-<br>
+
 Post your answer here.....
 <br>
   <textarea  ng-model='new_post.post' name="post" rows="4" cols="50">
   </textarea> 
 <br>
-<br>
+
 <input type="submit" value="Post Message!" ng-click="addPost()">
 </form> 
 
 
   <ul ng-repeat="x in posts.post | orderBy:'-up.length'">
-      {{x.name}}  {{x._id}} {{x.post}} {{x.user_id}}  
 
+
+      <a href="#profile/{{ x._userId }}">{{x.name}}</a>: {{x.post}} {{x.user_id}}  
+      
       <input type="hidden" ng-model="new_up.count" name="like" ng-init="new_up.count=1">
       <input type="submit" value="^" ng-click="addUp(x._id, new_up)" > {{x.up.length}}
 

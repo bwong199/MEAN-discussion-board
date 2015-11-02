@@ -54,8 +54,8 @@ module.exports = function(app) {
     });
 
     app.post("/saveComment/:id", function(req, res) {
-        console.log(req.body);        
-        // posts.saveComment(req, res);
+      
+        posts.saveComment(req, res);
     });
 
     app.post("/saveUp/:id", function(req, res) {   

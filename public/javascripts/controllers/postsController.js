@@ -1,11 +1,13 @@
 discussions_app.controller("PostsController", function($scope, topicFactory, postFactory, $routeParams, UserFactory) {
 
     postFactory.getPost(function (data) {   
+        console.log(data)
         $scope.posts = data;
     });
 
     postFactory.getComment(function (data) {
         $scope.comments = data;
+
     });
 
     topicFactory.getTopic(function (data) {
