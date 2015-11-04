@@ -6,8 +6,6 @@ var posts = require("./../controllers/posts.js");
 
 var comments = require("./../controllers/comments.js");
 
-var votes = require("./../controllers/votes.js");
-
 module.exports = function(app) {
 
     app.post("/main", function(req, res) {
@@ -76,16 +74,6 @@ module.exports = function(app) {
     app.get("/like/:id", function(req, res) {
         
         posts.showLike(req, res);
-    });
-
-    app.post("/up/:id", function(req, res) {
-
-        votes.saveUp(req, res);
-    });
-
-    app.post("/down/:id", function(req, res) {
-
-        votes.saveDown(req, res);
     });
 
     app.get("/user", function(req, res) {
