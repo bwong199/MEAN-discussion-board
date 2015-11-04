@@ -1,7 +1,7 @@
 discussions_app.controller("PostsController", function($scope, topicFactory, postFactory, $routeParams, UserFactory) {
 
     postFactory.getPost(function (data) {   
-        console.log(data)
+        console.log(data);
         $scope.posts = data;
     });
 
@@ -30,6 +30,8 @@ discussions_app.controller("PostsController", function($scope, topicFactory, pos
         $scope.users2 = data;
     });
 
+
+
     $scope.addPost = function() {
 
         $scope.new_post.name = $scope.users2.name;
@@ -47,10 +49,13 @@ discussions_app.controller("PostsController", function($scope, topicFactory, pos
         });
     };
 
-    $scope.addComment = function(id, comment) {
+    $scope.addComment = function(id, comment, userName, userId) {
 
+        var commentValue = comment.comment;
 
-        postFactory.addComment(id, comment, function () {
+        var newComment = {comment: commentValue, name: userName, userId: userId};
+
+        postFactory.addComment(id, newComment, function () {
 
             postFactory.getComment(function (data) {
                 $scope.comments = data;

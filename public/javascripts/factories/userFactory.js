@@ -8,6 +8,8 @@ discussions_app.factory("UserFactory", function($http, $routeParams) {
             callback(users2);
         });
     };
+
+
     factory.searchUser = function(callback) {
         $http.get("/searchUser/" + $routeParams.id).success(function(output) {
             userResult = output;

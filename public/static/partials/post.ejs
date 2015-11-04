@@ -3,7 +3,7 @@
 
 <a href="#">Logoff</a> 
 
- Hello {{ users2.name }}
+ Hello {{ users2.name }} {{users2._id}}
 
 <br> 
 
@@ -38,16 +38,15 @@ Post your answer here.....
       <input type="submit" value="v" ng-click="addDown(x._id, new_down)" > {{x.down.length}}
       <br>
       <ul ng-repeat="y in x.comment">
-        {{y.comment}}
+        <a href="#profile/{{ y.userId }}">{{y.name }}</a> : {{y.comment}} 
       </ul>
       <form>
 
       <textarea ng-model='new_comment.comment' name="comment" rows="4" cols="50">
       </textarea> 
-      <input type="text" style="display: none;" ng-model='new_comment.userId' value={{users2.id}} name="userId"  >
-      <input type="text" style="display: none;" ng-model='new_comment.name' value={{users2.name}} name="userName"   >
+
       <br>
-      <input type="submit" value="Post Comment!" ng-click="addComment(x._id, new_comment)">
+      <input type="submit" value="Post Comment!" ng-click="addComment(x._id, new_comment, users2.name, users2._id)">
       </form>
   </ul>
 

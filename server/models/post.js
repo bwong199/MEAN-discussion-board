@@ -7,7 +7,7 @@ var PostSchema = new mongoose.Schema({
     post:String,
     _userId: {type: Schema.ObjectId, ref: 'User'},
     _topicId: {type: Schema.ObjectId, ref: 'Topic'},
-    comment: [{name: String, comment: String}],
+    comment: [{name: String, comment: String, userId: String}],
     up: [{count: Number}],
     down: [{count: Number}],
 });

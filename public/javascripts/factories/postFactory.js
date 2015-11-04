@@ -27,7 +27,7 @@ discussions_app.factory("postFactory", function( $http, $routeParams) {
     };
 
     factory.addComment = function(id, info, callback) {
-
+        console.log(info);
         $http.post("/saveComment/" + id , info).success(function() {
         });
     };
@@ -39,7 +39,6 @@ discussions_app.factory("postFactory", function( $http, $routeParams) {
     };
 
     factory.addDown = function(id, info, callback) {
-        console.log(info);
         $http.post("/saveDown/" + id, info).success(function() {
         });
     };

@@ -68,24 +68,43 @@ module.exports = (function() {
         },
 
         saveComment: function(req, res) {
-
             Post.findById(req.params.id, function(err, post){
+                console.log(post);
+                console.log(req.body);
+                
                 var comment = req.body; 
-
                 post.comment.push(comment);
                 post.save(function(err){
                     if(err) {
                         console.log('Error');
                     } else {
-                        console.log('Successfully added comment', comment);
+                        console.log('Successfully added comment to post', comment);
                         res.redirect('/');
                     }
                 })                
             });
+
+            User.findOne({_id: req.body.userId}, function(err, user){
+            var comment = new Comment(req.body);
+            comment._userId = user._id;
+            user.comment.push(comment);
+            comment.save(function(err){
+                user.save(function(err){
+                    if(err) {
+                        console.log('Error');
+                    } else {
+                        console.log('Successfully added comments to user', comment);
+                        res.redirect('/');
+                        }
+                    })
+                })                
+           
+            });
+
+        
         },
 
         saveUp: function(req, res) {
-
             Post.findById(req.params.id, function(err, post){
                 var up = req.body; 
 
@@ -102,6 +121,7 @@ module.exports = (function() {
         }, 
 
         saveDown: function(req, res) {
+
 
             Post.findById(req.params.id, function(err, post){
                 var down = req.body; 
